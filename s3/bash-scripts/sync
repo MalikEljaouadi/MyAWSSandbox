@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+echo "== put objects in a bucket =="
+
+# Exit immedialtely if any command return a non-zero status
+set -e 
+
+# Name of the directory where the files will be stored
+OUTOUT_DIR="/tmp/s3-bash-scripts"
+
+# Remove the directory if already exists
+rm -rf $OUTOUT_DIR
+
+# Create the directory
+mkdir -p $OUTOUT_DIR
+
+# Generate a random number between 1 and 10 (inclusive)
+num_files=$((RANDOM % 10 + 1))
+
+# Create the specified number of files
+for ((i = 1; i <= num_files; i++)); do
+    # Define the file name
+    filename="$OUTOUT_DIR/file_$i.txt"
+
+    # Create the file
+    touch "$filename"
+
+    # Optionally, you can add some content to the file
+    echo "This is file number $i" >"$filename"
+done
+
+tree $OUTOUT_DIR
