@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+echo "== creating a bucket =="
+
+if [ -z "$1" ]; then
+    echo "There need to be a bucket name here"
+fi
+
+aws s3api create-bucket \
+--bucket "$1" \
+--create-bucket-configuration LocationConstraint=eu-central-1 \
+--output text
