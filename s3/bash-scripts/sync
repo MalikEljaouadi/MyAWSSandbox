@@ -33,7 +33,7 @@ num_files=$((RANDOM % 10 + 1))
 # Create the specified number of files
 for ((i = 1; i <= num_files; i++)); do
     # Define the file name
-    filename="$OUTOUT_DIR/$FILENAME_PREFIX_$i.txt"
+    filename="$OUTOUT_DIR/${FILENAME_PREFIX}_${i}.txt"
 
     # Create the file
     touch "$filename"
