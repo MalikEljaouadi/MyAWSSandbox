@@ -8,11 +8,13 @@ set -e
 # check for the bucket name
 if [ -z "$1" ]; then
     echo "There need to be a bucket name"
+    exit 1
 fi
 
 # check for the filename
 if [ -z "$1" ]; then
     echo "There need to be a filename"
+    exit 1
 fi
 
 BUCKET_NAME=$1
