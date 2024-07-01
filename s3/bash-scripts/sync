@@ -5,6 +5,19 @@ echo "== put objects in a bucket =="
 # Exit immedialtely if any command return a non-zero status
 set -e 
 
+# check for the bucket name
+if [ -z "$1" ]; then
+    echo "There need to be a bucket name"
+fi
+
+# check for the filename prefix
+if [ -z "$1" ]; then
+    echo "There need to be a filename prefix"
+fi
+
+BUCKET_NAME=$1
+FILENAME_PREFIX=$2
+
 # Name of the directory where the files will be stored
 OUTOUT_DIR="/tmp/s3-bash-scripts"
 
@@ -20,7 +33,7 @@ num_files=$((RANDOM % 10 + 1))
 # Create the specified number of files
 for ((i = 1; i <= num_files; i++)); do
     # Define the file name
-    filename="$OUTOUT_DIR/file_$i.txt"
+    filename="$OUTOUT_DIR/$FILENAME_PREFIX_$i.txt"
 
     # Create the file
     touch "$filename"
@@ -30,3 +43,5 @@ for ((i = 1; i <= num_files; i++)); do
 done
 
 tree $OUTOUT_DIR
+
+aws s3 sync $OUTOUT_DIR s3://$BUCKET_NAME/files
