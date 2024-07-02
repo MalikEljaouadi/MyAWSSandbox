@@ -1,4 +1,9 @@
-# Etag example:
+# Etag 
+
+## Definition:
+The entity tag is a hash of the object. The ETag reflects changes only to the contents of an object, not its metadata.
+
+## Example:
 
 The purpose of this example is to show how the Etag of an s3 object changes each time there is a change on the content of the s3 object.
 
